@@ -1,12 +1,19 @@
-import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
+import { Controller, Get, Request, UseGuards } from '@nestjs/common';
+import { JwtAuthGuard } from '@providers/jwt-provider/guards/jwt-auth.guard';
+import { randomUUID } from 'crypto';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  @UseGuards(JwtAuthGuard)
+  @Get('cruds')
+  getProfile() {
 
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
+    return {
+      totalItems: 10,
+      member: Array.from({ length: 10 }, () => ({
+        id: randomUUID(),
+        name: 'teste',
+      })),
+    };
   }
 }
