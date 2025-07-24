@@ -6,7 +6,7 @@ import { ApiOperation, ApiProperty, ApiResponse, ApiTags } from '@nestjs/swagger
 import { instanceToPlain } from 'class-transformer';
 import { IsEmail, IsEnum, IsOptional, IsString } from 'class-validator';
 
-class CreateUserDto {
+class CreateUserDTO {
   @ApiProperty()
   @IsString()
   name: string;
@@ -39,7 +39,7 @@ class CreateUserController {
   @ApiOperation({ summary: 'Create User' })
   @ApiResponse({ status: 201, description: 'User successfully created.' })
   @ApiResponse({ status: 409, description: 'Email already registered.' })
-  async handle(@Body() createUserDto: CreateUserDto) {
+  async handle(@Body() createUserDto: CreateUserDTO) {
     const { name, email, password, role } = createUserDto;
 
     const createdUser = await this.createUserService.execute({

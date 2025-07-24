@@ -1,5 +1,5 @@
 import { env } from '@config/env';
-import { IHashProvider } from '@providers/hash-provider/models/hash.provider';
+import type { IHashProvider } from '@providers/hash-provider/models/hash.provider';
 import { compare, hash } from 'bcryptjs';
 
 class BcryptHashProvider implements IHashProvider {

@@ -1,0 +1,6 @@
+const CREATE_COURSE_REPOSITORY_TOKEN = Symbol('CreateCourseRepository');
+const FIND_COURSE_BY_NAME_REPOSITORY_TOKEN = Symbol(
+  'FindCourseByNameRepository',
+);
+
+export { CREATE_COURSE_REPOSITORY_TOKEN, FIND_COURSE_BY_NAME_REPOSITORY_TOKEN };

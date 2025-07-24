@@ -1,9 +1,9 @@
-import type { UserRole } from "@modules/users/constants";
+import type { UserRole } from '@modules/users/constants';
 
 class UserDTO {
   userId: string;
   email: string;
-  role: UserRole
+  role: UserRole;
 }
 
-export { UserDTO }
+export { UserDTO };

@@ -1,13 +1,8 @@
-import type { UserRole } from '@modules/users/constants';
+import type { WithoutEntityBaseProperties } from '@modules/common/helpers/without-entity-base-properties';
 import { IUserEntity } from '@modules/users/domain/entities/user.entity';
 
 namespace ICreateUser {
-  export interface Params {
-    name: string;
-    email: string;
-    password: string;
-    role?: UserRole;
-  }
+  export type Params = WithoutEntityBaseProperties<IUserEntity>
 
   export type Response = IUserEntity;
 }

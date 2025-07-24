@@ -4,5 +4,4 @@ interface IBaseEntity {
   updatedAt: Date | null;
 }
 
-
-export { IBaseEntity }
+export type { IBaseEntity };

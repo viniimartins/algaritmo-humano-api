@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import 'reflect-metadata';
 
-import { DataSource, DataSourceOptions } from 'typeorm';
+import { DataSource, type DataSourceOptions } from 'typeorm';
 
 import { connection } from './connection-options';
 

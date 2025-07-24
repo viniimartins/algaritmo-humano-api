@@ -1,51 +1,51 @@
 {
-  "rootDirs": [
-    "src",
-  ],
-  "compilerOptions": {
-    "module": "commonjs",
-    "declaration": true,
-    "removeComments": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "allowSyntheticDefaultImports": true,
-    "target": "ES2023",
-    "sourceMap": true,
-    "outDir": "./dist",
-    "baseUrl": "src",
-    "incremental": true,
-    "skipLibCheck": true,
-    "strictNullChecks": true,
-    "forceConsistentCasingInFileNames": true,
-    "noImplicitAny": false,
-    "strictBindCallApply": false,
-    "noFallthroughCasesInSwitch": false,
-    "strictPropertyInitialization": false,
-    "paths": {
-      "@modules/*": [
-        "modules/*"
-      ],
-      "@common/*": [
-        "common/*"
-      ],
-      "@middlewares/*": [
-        "middlewares/*"
-      ],
-      "@infra/*": [
-        "infra/*"
-      ],
-      "@container/*": [
-        "container/*"
-      ],
-      "@lib/*": [
-        "lib/*"
-      ],
-      "@config/*": [
-        "config/*"
-      ],
-      "@providers/*": [
-        "providers/*"
-      ],
-    },
-  },
+	"rootDirs": [
+		"src"
+	],
+	"compilerOptions": {
+		"module": "commonjs",
+		"declaration": true,
+		"removeComments": true,
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"allowSyntheticDefaultImports": true,
+		"target": "ES2023",
+		"sourceMap": true,
+		"outDir": "./dist",
+		"baseUrl": "src",
+		"incremental": true,
+		"skipLibCheck": true,
+		"strictNullChecks": true,
+		"forceConsistentCasingInFileNames": true,
+		"noImplicitAny": false,
+		"strictBindCallApply": false,
+		"noFallthroughCasesInSwitch": false,
+		"strictPropertyInitialization": false,
+		"paths": {
+			"@modules/*": [
+				"modules/*"
+			],
+			"@common/*": [
+				"common/*"
+			],
+			"@middlewares/*": [
+				"middlewares/*"
+			],
+			"@infra/*": [
+				"infra/*"
+			],
+			"@container/*": [
+				"container/*"
+			],
+			"@lib/*": [
+				"lib/*"
+			],
+			"@config/*": [
+				"config/*"
+			],
+			"@providers/*": [
+				"providers/*"
+			]
+		}
+	}
 }

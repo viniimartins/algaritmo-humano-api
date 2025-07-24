@@ -1,0 +1,4 @@
+const COURSE_BASE_ROUTE = 'courses';
+const CREATE_COURSE_ROUTE = '/';
+
+export { COURSE_BASE_ROUTE, CREATE_COURSE_ROUTE };

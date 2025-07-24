@@ -3,4 +3,4 @@ interface IHashProvider {
   compare(raw: string, hash: string): Promise<boolean>;
 }
 
-export { IHashProvider };
+export type { IHashProvider };

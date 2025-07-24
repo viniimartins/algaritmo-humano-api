@@ -5,7 +5,7 @@ import { ApiOperation, ApiProperty, ApiResponse, ApiTags } from '@nestjs/swagger
 import { instanceToPlain } from 'class-transformer';
 import { IsEmail, IsString } from 'class-validator';
 
-class SignUpDto {
+class SignUpDTO {
   @ApiProperty()
   @IsString()
   name: string;
@@ -33,7 +33,7 @@ class SignUpController {
   @ApiOperation({ summary: 'User Sign Up' })
   @ApiResponse({ status: 201, description: 'User successfully registered.' })
   @ApiResponse({ status: 400, description: 'Validation error.' })
-  async handle(@Body() signUpDto: SignUpDto) {
+  async handle(@Body() signUpDto: SignUpDTO) {
     const { name, email, password, passwordConfirmation } = signUpDto;
 
     const user = await this.signUpService.execute({

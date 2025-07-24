@@ -1,5 +1,5 @@
 import { env } from '@config/env';
-import { DataSourceOptions } from 'typeorm';
+import type { DataSourceOptions } from 'typeorm';
 
 const connection = new Map<'default', DataSourceOptions>([
   [

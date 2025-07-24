@@ -1,12 +1,10 @@
-import { createParamDecorator, ExecutionContext } from '@nestjs/common';
+import { createParamDecorator, type ExecutionContext } from '@nestjs/common';
 import type { UserDTO } from '@providers/jwt-provider/dtos/userDTO';
 
-const User = createParamDecorator(
-  (_, ctx: ExecutionContext) => {
-    const request = ctx.switchToHttp().getRequest<{ user: UserDTO }>();
+const User = createParamDecorator((_, ctx: ExecutionContext) => {
+  const request = ctx.switchToHttp().getRequest<{ user: UserDTO }>();
 
-    return request.user;
-  },
-);
+  return request.user;
+});
 
-export { User }
+export { User };

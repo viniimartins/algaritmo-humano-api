@@ -1,11 +1,11 @@
 import { AUTH_BASE_ROUTE, SIGN_IN_ROUTE } from '@modules/auth/constants/routes';
 import { SignInService } from '@modules/auth/services/sign-in.service';
-import { Body, Controller, HttpCode, HttpStatus,Post } from '@nestjs/common';
-import { ApiOperation, ApiProperty,ApiResponse, ApiTags } from '@nestjs/swagger';
+import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
+import { ApiOperation, ApiProperty, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { instanceToPlain } from 'class-transformer';
 import { IsEmail, IsString } from 'class-validator';
 
-class SignInDto {
+class SignInDTO {
   @ApiProperty()
   @IsEmail()
   email: string;
@@ -27,7 +27,7 @@ class SignInController {
   @ApiResponse({ status: 400, description: 'Validation error.' })
   @ApiResponse({ status: 401, description: 'Invalid credentials.' })
   @ApiResponse({ status: 404, description: 'User not found.' })
-  async handle(@Body() signInDto: SignInDto) {
+  async handle(@Body() signInDto: SignInDTO) {
     const { email, password } = signInDto;
 
     const user = await this.signInService.execute({
