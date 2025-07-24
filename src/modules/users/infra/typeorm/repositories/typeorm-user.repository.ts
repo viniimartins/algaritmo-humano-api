@@ -11,13 +11,12 @@ import { Repository } from 'typeorm';
 
 @Injectable()
 class TypeORMUserRepository
-  implements
-  ICreateUserRepository,
-  IFindUserByEmailRepository {
+  implements ICreateUserRepository, IFindUserByEmailRepository
+{
   constructor(
     @InjectRepository(TypeORMUserEntity)
     private readonly repository: Repository<TypeORMUserEntity>,
-  ) { }
+  ) {}
 
   async create(params: ICreateUser.Params): Promise<ICreateUser.Response> {
     const user = this.repository.create(params);
@@ -28,7 +27,6 @@ class TypeORMUserRepository
   async findByEmail(
     params: IFindUserByEmail.Params,
   ): Promise<IFindUserByEmail.Response> {
-
     const user = await this.repository.findOneBy({ email: params.email });
     return user;
   }

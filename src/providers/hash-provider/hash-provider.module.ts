@@ -12,6 +12,6 @@ import { BcryptHashProvider } from './implementations/bcrypt-hash.provider';
   ],
   exports: [HASH_PROVIDER_TOKEN],
 })
-class HashProviderModule { }
+class HashProviderModule {}
 
 export { HashProviderModule };

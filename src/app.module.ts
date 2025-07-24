@@ -6,16 +6,16 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
-	imports: [
-		TypeOrmModule.forRoot({
-			...DataSourceManager.options,
-			autoLoadEntities: true,
-		}),
-		UsersModule,
-		AuthModule,
-		CoursesModule,
-	],
+  imports: [
+    TypeOrmModule.forRoot({
+      ...DataSourceManager.options,
+      autoLoadEntities: true,
+    }),
+    UsersModule,
+    AuthModule,
+    CoursesModule,
+  ],
 })
-class AppModule { }
+class AppModule {}
 
 export { AppModule };

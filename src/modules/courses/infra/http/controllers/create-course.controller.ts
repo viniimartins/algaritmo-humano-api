@@ -1,6 +1,14 @@
 import { COURSE_BASE_ROUTE, CourseStatus } from '@modules/courses/constants';
 import { CreateCourseService } from '@modules/courses/services/create-course.service';
-import { Body, Controller, HttpCode, HttpStatus, Post, Request, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  HttpCode,
+  HttpStatus,
+  Post,
+  Request,
+  UseGuards,
+} from '@nestjs/common';
 import {
   ApiBearerAuth,
   ApiOperation,
@@ -43,14 +51,17 @@ class CreateCourseDTO {
 @ApiBearerAuth()
 @UseGuards(JwtAuthGuard)
 class CreateCourseController {
-  constructor(private readonly createCourseService: CreateCourseService) { }
+  constructor(private readonly createCourseService: CreateCourseService) {}
 
   @Post()
   @HttpCode(HttpStatus.CREATED)
   @ApiOperation({ summary: 'Create Course' })
   @ApiResponse({ status: 201, description: 'Course successfully created.' })
-  async handle(@User() user: UserDTO, @Body() createCourseDto: CreateCourseDTO) {
-    const { userId } = user
+  async handle(
+    @User() user: UserDTO,
+    @Body() createCourseDto: CreateCourseDTO,
+  ) {
+    const { userId } = user;
 
     const { title, description, image, duration, status } = createCourseDto;
 

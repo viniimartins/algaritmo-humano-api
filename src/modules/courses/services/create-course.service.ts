@@ -11,7 +11,7 @@ class CreateCourseService implements ICreateCourseService {
   constructor(
     @Inject(CREATE_COURSE_REPOSITORY_TOKEN)
     private createCourseRepository: ICreateCourseRepository,
-  ) { }
+  ) {}
 
   async execute(
     params: ICreateCourse.Request,
@@ -24,7 +24,7 @@ class CreateCourseService implements ICreateCourseService {
       duration,
       image,
       status,
-      userId
+      userId,
     });
 
     return course;

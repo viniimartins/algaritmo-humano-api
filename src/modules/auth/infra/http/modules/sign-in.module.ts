@@ -5,18 +5,10 @@ import { HashProviderModule } from '@providers/hash-provider/hash-provider.modul
 import { SignInController } from 'modules/auth/infra/http/controllers/sign-in.controller';
 
 @Module({
-  imports: [
-    UsersRepositoryModule,
-    HashProviderModule,
-
-  ],
-  providers: [
-    SignInService
-  ],
-  controllers: [
-    SignInController
-  ],
+  imports: [UsersRepositoryModule, HashProviderModule],
+  providers: [SignInService],
+  controllers: [SignInController],
 })
-class SignInModule { }
+class SignInModule {}
 
-export { SignInModule }
+export { SignInModule };

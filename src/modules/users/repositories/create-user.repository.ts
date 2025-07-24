@@ -2,7 +2,7 @@ import type { WithoutEntityBaseProperties } from '@modules/common/helpers/withou
 import { IUserEntity } from '@modules/users/domain/entities/user.entity';
 
 namespace ICreateUser {
-  export type Params = WithoutEntityBaseProperties<IUserEntity>
+  export type Params = WithoutEntityBaseProperties<IUserEntity>;
 
   export type Response = IUserEntity;
 }

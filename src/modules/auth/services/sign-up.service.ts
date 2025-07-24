@@ -1,4 +1,7 @@
-import type { ISignUp, ISignUpService } from '@modules/auth/domain/services/sign-up.service';
+import type {
+  ISignUp,
+  ISignUpService,
+} from '@modules/auth/domain/services/sign-up.service';
 import {
   CREATE_USER_REPOSITORY_TOKEN,
   FIND_USER_BY_EMAIL_REPOSITORY_TOKEN,
@@ -22,7 +25,7 @@ class SignUpService implements ISignUpService {
 
     @Inject(HASH_PROVIDER_TOKEN)
     private hashProvider: IHashProvider,
-  ) { }
+  ) {}
 
   async execute(params: ISignUp.Request): Promise<ISignUp.Response> {
     const existingUser = await this.findUserByEmailRepository.findByEmail({

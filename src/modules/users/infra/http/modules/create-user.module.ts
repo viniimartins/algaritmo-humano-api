@@ -5,17 +5,10 @@ import { Module } from '@nestjs/common';
 import { HashProviderModule } from '@providers/hash-provider/hash-provider.module';
 
 @Module({
-  imports: [
-    UsersRepositoryModule,
-    HashProviderModule,
-  ],
-  providers: [
-    CreateUserService
-  ],
-  controllers: [
-    CreateUserController
-  ],
+  imports: [UsersRepositoryModule, HashProviderModule],
+  providers: [CreateUserService],
+  controllers: [CreateUserController],
 })
-class CreateUsersModule { }
+class CreateUsersModule {}
 
-export { CreateUsersModule }
+export { CreateUsersModule };

@@ -3,8 +3,8 @@ import type { ICourseEntity } from '@modules/courses/domain/entities/course.enti
 
 namespace ICreateCourse {
   export type Params = WithoutEntityBaseProperties<ICourseEntity> & {
-    userId: string
-  }
+    userId: string;
+  };
 
   export type Response = ICourseEntity;
 }

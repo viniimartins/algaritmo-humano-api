@@ -1,7 +1,12 @@
 import { AUTH_BASE_ROUTE, SIGN_UP_ROUTE } from '@modules/auth/constants/routes';
 import { SignUpService } from '@modules/auth/services/sign-up.service';
 import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
-import { ApiOperation, ApiProperty, ApiResponse, ApiTags } from '@nestjs/swagger';
+import {
+  ApiOperation,
+  ApiProperty,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 import { instanceToPlain } from 'class-transformer';
 import { IsEmail, IsString } from 'class-validator';
 
@@ -26,7 +31,7 @@ class SignUpDTO {
 @ApiTags(AUTH_BASE_ROUTE)
 @Controller(SIGN_UP_ROUTE)
 class SignUpController {
-  constructor(private readonly signUpService: SignUpService) { }
+  constructor(private readonly signUpService: SignUpService) {}
 
   @Post()
   @HttpCode(HttpStatus.CREATED)

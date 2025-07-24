@@ -1,5 +1,11 @@
-import { CREATE_USER_REPOSITORY_TOKEN, FIND_USER_BY_EMAIL_REPOSITORY_TOKEN } from '@modules/users/constants';
-import { ICreateUser, ICreateUserService } from '@modules/users/domain/services';
+import {
+  CREATE_USER_REPOSITORY_TOKEN,
+  FIND_USER_BY_EMAIL_REPOSITORY_TOKEN,
+} from '@modules/users/constants';
+import {
+  ICreateUser,
+  ICreateUserService,
+} from '@modules/users/domain/services';
 import {
   ICreateUserRepository,
   IFindUserByEmailRepository,
@@ -19,7 +25,7 @@ class CreateUserService implements ICreateUserService {
 
     @Inject(HASH_PROVIDER_TOKEN)
     private hashProvider: IHashProvider,
-  ) { }
+  ) {}
 
   async execute(params: ICreateUser.Request): Promise<ICreateUser.Response> {
     const { name, email, password, role } = params;

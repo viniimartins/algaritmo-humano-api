@@ -18,8 +18,8 @@ import { JwtStrategyProvider } from '@providers/jwt-provider/implementations/jwt
     }),
   ],
   providers: [JwtStrategyProvider],
-  exports: [JwtStrategyProvider]
+  exports: [JwtStrategyProvider],
 })
-class AuthModule { }
+class AuthModule {}
 
-export { AuthModule }
+export { AuthModule };
