@@ -8,7 +8,7 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { instanceToPlain } from 'class-transformer';
-import { IsEmail, IsString } from 'class-validator';
+import { IsEmail, IsString, Matches, MinLength } from 'class-validator';
 
 class SignUpDTO {
   @ApiProperty()
@@ -21,11 +21,9 @@ class SignUpDTO {
 
   @ApiProperty()
   @IsString()
+  @MinLength(8)
+  @Matches(/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/)
   password: string;
-
-  @ApiProperty()
-  @IsString()
-  passwordConfirmation: string;
 }
 
 @ApiTags(AUTH_BASE_ROUTE)
@@ -39,13 +37,12 @@ class SignUpController {
   @ApiResponse({ status: 201, description: 'User successfully registered.' })
   @ApiResponse({ status: 400, description: 'Validation error.' })
   async handle(@Body() signUpDto: SignUpDTO) {
-    const { name, email, password, passwordConfirmation } = signUpDto;
+    const { name, email, password } = signUpDto;
 
     const user = await this.signUpService.execute({
       name,
       email,
       password,
-      passwordConfirmation,
     });
 
     return instanceToPlain(user);

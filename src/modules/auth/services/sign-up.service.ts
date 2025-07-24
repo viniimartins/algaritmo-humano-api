@@ -36,12 +36,6 @@ class SignUpService implements ISignUpService {
       throw new BadRequestException('User already exists');
     }
 
-    if (params.password !== params.passwordConfirmation) {
-      throw new BadRequestException(
-        'Password and password confirmation do not match',
-      );
-    }
-
     const hashedPassword = await this.hashProvider.hash(params.password);
 
     const createdUser = await this.createUserRepository.create({

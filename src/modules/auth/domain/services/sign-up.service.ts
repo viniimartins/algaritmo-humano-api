@@ -1,12 +1,8 @@
+import type { WithoutEntityBaseProperties } from '@modules/common/helpers/without-entity-base-properties';
 import { IUserEntity } from '@modules/users/domain/entities/user.entity';
 
 namespace ISignUp {
-  export interface Request {
-    name: string;
-    email: string;
-    password: string;
-    passwordConfirmation: string;
-  }
+  export type Request = WithoutEntityBaseProperties<IUserEntity>;
 
   export type Response = IUserEntity;
 }

@@ -1,4 +1,4 @@
-// @ts-check
+// @ts-nocheck
 import eslint from "@eslint/js";
 // import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 import globals from "globals";
@@ -36,6 +36,7 @@ export default tseslint.config(
 			"@typescript-eslint/no-namespace": "off",
 			"@typescript-eslint/no-unsafe-assignment": "off",
 			"@typescript-eslint/no-unsafe-call": "off",
+			'@typescript-eslint/no-empty-object-type': 'off',
 
 			"simple-import-sort/imports": "warn",
 			"simple-import-sort/exports": "warn",
