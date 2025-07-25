@@ -23,7 +23,7 @@ class DeleteCourseService implements IDeleteCourseService {
 
     @Inject(FIND_COURSE_BY_ID_REPOSITORY_TOKEN)
     private findCourseByIdRepository: IFindCourseByIdRepository,
-  ) {}
+  ) { }
 
   async execute(
     params: IDeleteCourse.Request,
