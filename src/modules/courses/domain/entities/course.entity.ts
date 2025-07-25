@@ -5,7 +5,7 @@ interface ICourseEntity extends IBaseEntity {
   title: string;
   description: string;
   image: string;
-  duration: number;
+  duration: string;
   status: CourseStatus | undefined;
 }
 

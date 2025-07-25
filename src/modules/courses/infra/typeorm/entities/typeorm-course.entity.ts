@@ -15,8 +15,8 @@ class TypeORMCourseEntity extends TypeORMBaseEntity implements ICourseEntity {
   @Column()
   image: string;
 
-  @Column('int')
-  duration: number;
+  @Column()
+  duration: string;
 
   @Column({ type: 'enum', enum: CourseStatus, default: CourseStatus.ACTIVE })
   status: CourseStatus;

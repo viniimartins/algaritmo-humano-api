@@ -21,7 +21,7 @@ import { User } from '@providers/jwt-provider/decorators/user.decorator';
 import type { UserDTO } from '@providers/jwt-provider/dtos/userDTO';
 import { JwtAuthGuard } from '@providers/jwt-provider/guards/jwt-auth.guard';
 import { instanceToPlain } from 'class-transformer';
-import { IsEnum, IsNumber, IsOptional, IsString } from 'class-validator';
+import { IsEnum, IsOptional, IsString, IsUrl, Matches } from 'class-validator';
 
 class CreateCourseDTO {
   @ApiProperty()
@@ -34,11 +34,13 @@ class CreateCourseDTO {
 
   @ApiProperty()
   @IsString()
+  @IsUrl()
   image: string;
 
   @ApiProperty()
-  @IsNumber()
-  duration: number;
+  @IsString()
+  @Matches(/^\d{1,3}:[0-5]\d$/)
+  duration: string;
 
   @ApiPropertyOptional({ enum: CourseStatus, default: CourseStatus.ACTIVE })
   @IsOptional()
