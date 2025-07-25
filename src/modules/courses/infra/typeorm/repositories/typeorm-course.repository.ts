@@ -4,8 +4,12 @@ import { TypeORMCourseEntity } from '@modules/courses/infra/typeorm/entities/typ
 import type {
   ICreateCourse,
   ICreateCourseRepository,
+  IFindCourseById,
+  IFindCourseByIdRepository,
   ISearchCourse,
   ISearchCourseRepository,
+  IUpdateCourse,
+  IUpdateCourseRepository,
 } from '@modules/courses/repositories';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -13,7 +17,11 @@ import type { Repository } from 'typeorm';
 
 @Injectable()
 class TypeORMCourseRepository
-  implements ICreateCourseRepository, ISearchCourseRepository
+  implements
+    ICreateCourseRepository,
+    ISearchCourseRepository,
+    IUpdateCourseRepository,
+    IFindCourseByIdRepository
 {
   constructor(
     @InjectRepository(TypeORMCourseEntity)
@@ -36,6 +44,18 @@ class TypeORMCourseRepository
       page: params.page,
       limit: params.limit,
     });
+  }
+
+  async update(params: IUpdateCourse.Params): Promise<IUpdateCourse.Response> {
+    return this.repository.save({ id: params.id, ...params.data });
+  }
+
+  async findById(
+    params: IFindCourseById.Params,
+  ): Promise<IFindCourseById.Response> {
+    const course = await this.repository.findOneBy({ id: params.id });
+
+    return course;
   }
 }
 

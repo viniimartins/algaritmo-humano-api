@@ -7,6 +7,8 @@ interface ICourseEntity extends IBaseEntity {
   image: string;
   duration: string;
   status: CourseStatus | undefined;
+
+  userId: string;
 }
 
 export type { ICourseEntity };

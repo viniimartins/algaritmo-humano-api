@@ -16,16 +16,7 @@ class CreateCourseService implements ICreateCourseService {
   async execute(
     params: ICreateCourse.Request,
   ): Promise<ICreateCourse.Response> {
-    const { title, description, image, duration, status, userId } = params;
-
-    const course = await this.createCourseRepository.create({
-      title,
-      description,
-      duration,
-      image,
-      status,
-      userId,
-    });
+    const course = await this.createCourseRepository.create(params);
 
     return course;
   }

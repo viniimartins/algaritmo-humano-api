@@ -1,16 +1,16 @@
 import {
   COURSE_BASE_ROUTE,
   CourseStatus,
-  CREATE_COURSE_ROUTE,
+  UPDATE_COURSE_ROUTE,
 } from '@modules/courses/constants';
-import { CreateCourseService } from '@modules/courses/services/create-course.service';
+import { UpdateCourseService } from '@modules/courses/services/update-course.service';
 import {
   Body,
   Controller,
   HttpCode,
   HttpStatus,
-  Post,
-  Request,
+  Param,
+  Patch,
   UseGuards,
 } from '@nestjs/common';
 import {
@@ -27,7 +27,7 @@ import { JwtAuthGuard } from '@providers/jwt-provider/guards/jwt-auth.guard';
 import { instanceToPlain } from 'class-transformer';
 import { IsEnum, IsOptional, IsString, IsUrl, Matches } from 'class-validator';
 
-class CreateCourseDTO {
+class UpdateCourseDTO {
   @ApiProperty()
   @IsString()
   title: string;
@@ -56,32 +56,36 @@ class CreateCourseDTO {
 @Controller(COURSE_BASE_ROUTE)
 @ApiBearerAuth()
 @UseGuards(JwtAuthGuard)
-class CreateCourseController {
-  constructor(private readonly createCourseService: CreateCourseService) {}
+class UpdateCourseController {
+  constructor(private readonly updateCourseService: UpdateCourseService) {}
 
-  @Post(CREATE_COURSE_ROUTE)
+  @Patch(UPDATE_COURSE_ROUTE)
   @HttpCode(HttpStatus.CREATED)
-  @ApiOperation({ summary: 'Create Course' })
-  @ApiResponse({ status: 201, description: 'Course successfully created.' })
+  @ApiOperation({ summary: 'Update Course' })
+  @ApiResponse({ status: 201, description: 'Course successfully updated.' })
   async handle(
     @User() user: UserDTO,
-    @Body() createCourseDto: CreateCourseDTO,
+    @Param('id') id: string,
+    @Body() updateCourseDto: UpdateCourseDTO,
   ) {
     const { userId } = user;
 
-    const { title, description, image, duration, status } = createCourseDto;
+    const { title, description, duration, image, status } = updateCourseDto;
 
-    const createdCourse = await this.createCourseService.execute({
-      title,
-      description,
-      duration,
-      image,
-      status,
-      userId,
+    const createdCourse = await this.updateCourseService.execute({
+      id,
+      data: {
+        title,
+        description,
+        duration,
+        image,
+        status,
+        userId,
+      },
     });
 
     return instanceToPlain(createdCourse);
   }
 }
 
-export { CreateCourseController };
+export { UpdateCourseController };

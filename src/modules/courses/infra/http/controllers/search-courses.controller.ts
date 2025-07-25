@@ -1,4 +1,7 @@
-import { COURSE_BASE_ROUTE } from '@modules/courses/constants';
+import {
+  COURSE_BASE_ROUTE,
+  SEARCH_COURSE_ROUTE,
+} from '@modules/courses/constants';
 import { SearchCoursesService } from '@modules/courses/services/seach-courses.service';
 import { Controller, Get, HttpCode, HttpStatus, Query } from '@nestjs/common';
 import {
@@ -33,7 +36,7 @@ export class SearchCoursesDTO {
 class SearchCoursesController {
   constructor(private readonly searchCoursesService: SearchCoursesService) {}
 
-  @Get()
+  @Get(SEARCH_COURSE_ROUTE)
   @HttpCode(HttpStatus.OK)
   @ApiOperation({ summary: 'Search Courses' })
   @ApiResponse({ status: 200, description: 'Courses retrieved successfully.' })

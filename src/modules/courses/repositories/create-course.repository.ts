@@ -2,9 +2,7 @@ import type { WithoutEntityBaseProperties } from '@modules/common/helpers/withou
 import type { ICourseEntity } from '@modules/courses/domain/entities/course.entity';
 
 namespace ICreateCourse {
-  export type Params = WithoutEntityBaseProperties<ICourseEntity> & {
-    userId: string;
-  };
+  export type Params = WithoutEntityBaseProperties<ICourseEntity>;
 
   export type Response = ICourseEntity;
 }
