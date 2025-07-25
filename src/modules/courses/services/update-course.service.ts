@@ -34,10 +34,13 @@ class UpdateCourseService implements IUpdateCourseService {
 
     const course = await this.findCourseByIdRepository.findById({ id });
 
-    if (!course) throw new NotFoundException('Course not found');
+    if (!course) {
+      throw new NotFoundException('Course not found');
+    }
 
-    if (course.userId !== data.userId)
+    if (course.userId !== data.userId) {
       throw new ForbiddenException('You cannot update this course');
+    }
 
     return this.updateCourseRepository.update(params);
   }

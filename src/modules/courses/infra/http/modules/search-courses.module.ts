@@ -1,6 +1,6 @@
 import { SearchCoursesController } from '@modules/courses/infra/http/controllers/search-courses.controller';
 import { CoursesRepositoryModule } from '@modules/courses/providers/courses-repository.module';
-import { SearchCoursesService } from '@modules/courses/services/seach-courses.service';
+import { SearchCoursesService } from '@modules/courses/services/search-courses.service';
 import { Module } from '@nestjs/common';
 
 @Module({

@@ -2,7 +2,7 @@ import {
   COURSE_BASE_ROUTE,
   SEARCH_COURSE_ROUTE,
 } from '@modules/courses/constants';
-import { SearchCoursesService } from '@modules/courses/services/seach-courses.service';
+import { SearchCoursesService } from '@modules/courses/services/search-courses.service';
 import { Controller, Get, HttpCode, HttpStatus, Query } from '@nestjs/common';
 import {
   ApiBearerAuth,

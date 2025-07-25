@@ -62,7 +62,12 @@ class UpdateCourseController {
   @Patch(UPDATE_COURSE_ROUTE)
   @HttpCode(HttpStatus.CREATED)
   @ApiOperation({ summary: 'Update Course' })
-  @ApiResponse({ status: 201, description: 'Course successfully updated.' })
+  @ApiResponse({ status: 201, description: 'Course successfully deleted.' })
+  @ApiResponse({
+    status: 403,
+    description: 'You do not have permission to updated this course.',
+  })
+  @ApiResponse({ status: 404, description: 'Course not found.' })
   async handle(
     @User() user: UserDTO,
     @Param('id') id: string,
@@ -72,7 +77,7 @@ class UpdateCourseController {
 
     const { title, description, duration, image, status } = updateCourseDto;
 
-    const createdCourse = await this.updateCourseService.execute({
+    const updatedCourse = await this.updateCourseService.execute({
       id,
       data: {
         title,
@@ -84,7 +89,7 @@ class UpdateCourseController {
       },
     });
 
-    return instanceToPlain(createdCourse);
+    return instanceToPlain(updatedCourse);
   }
 }
 

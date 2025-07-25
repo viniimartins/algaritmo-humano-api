@@ -4,6 +4,8 @@ import { TypeORMCourseEntity } from '@modules/courses/infra/typeorm/entities/typ
 import type {
   ICreateCourse,
   ICreateCourseRepository,
+  IDeleteCourse,
+  IDeleteCourseRepository,
   IFindCourseById,
   IFindCourseByIdRepository,
   ISearchCourse,
@@ -21,7 +23,8 @@ class TypeORMCourseRepository
     ICreateCourseRepository,
     ISearchCourseRepository,
     IUpdateCourseRepository,
-    IFindCourseByIdRepository
+    IFindCourseByIdRepository,
+    IDeleteCourseRepository
 {
   constructor(
     @InjectRepository(TypeORMCourseEntity)
@@ -35,7 +38,7 @@ class TypeORMCourseRepository
     return course;
   }
 
-  async search(params: ISearchCourse.Request): Promise<ISearchCourse.Response> {
+  async search(params: ISearchCourse.Params): Promise<ISearchCourse.Response> {
     const query = this.repository.createQueryBuilder();
 
     const search = new Search<ICourseEntity>(query);
@@ -56,6 +59,10 @@ class TypeORMCourseRepository
     const course = await this.repository.findOneBy({ id: params.id });
 
     return course;
+  }
+
+  async delete(params: IDeleteCourse.Params): Promise<IDeleteCourse.Response> {
+    await this.repository.delete({ id: params.id });
   }
 }
 

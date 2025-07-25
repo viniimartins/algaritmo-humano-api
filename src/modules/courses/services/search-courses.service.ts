@@ -1,9 +1,9 @@
 import { SEARCH_COURSES_REPOSITORY_TOKEN } from '@modules/courses/constants';
-import type { ISearchCoursesService } from '@modules/courses/domain/services';
 import type {
-  ISearchCourse,
-  ISearchCourseRepository,
-} from '@modules/courses/repositories';
+  ISearchCourses,
+  ISearchCoursesService,
+} from '@modules/courses/domain/services';
+import type { ISearchCourseRepository } from '@modules/courses/repositories/search-courses.repository';
 import { Inject, Injectable } from '@nestjs/common';
 
 @Injectable()
@@ -14,8 +14,8 @@ class SearchCoursesService implements ISearchCoursesService {
   ) {}
 
   async execute(
-    params: ISearchCourse.Request,
-  ): Promise<ISearchCourse.Response> {
+    params: ISearchCourses.Request,
+  ): Promise<ISearchCourses.Response> {
     const { limit, page } = params;
 
     const courses = await this.searchCoursesRepository.search({
