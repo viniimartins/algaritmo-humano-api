@@ -16,11 +16,12 @@ class SearchCoursesService implements ISearchCoursesService {
   async execute(
     params: ISearchCourses.Request,
   ): Promise<ISearchCourses.Response> {
-    const { limit, page } = params;
+    const { limit, page, filters } = params;
 
     const courses = await this.searchCoursesRepository.search({
       limit,
       page,
+      filters,
     });
 
     return courses;

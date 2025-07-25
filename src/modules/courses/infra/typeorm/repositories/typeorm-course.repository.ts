@@ -8,6 +8,8 @@ import type {
   IDeleteCourseRepository,
   IFindCourseById,
   IFindCourseByIdRepository,
+  IFindCoursesByUser,
+  IFindCoursesByUserRepository,
   ISearchCourse,
   ISearchCourseRepository,
   IUpdateCourse,
@@ -24,7 +26,8 @@ class TypeORMCourseRepository
     ISearchCourseRepository,
     IUpdateCourseRepository,
     IFindCourseByIdRepository,
-    IDeleteCourseRepository
+    IDeleteCourseRepository,
+    IFindCoursesByUserRepository
 {
   constructor(
     @InjectRepository(TypeORMCourseEntity)
@@ -46,6 +49,10 @@ class TypeORMCourseRepository
     return search.execute({
       page: params.page,
       limit: params.limit,
+      sort: params.sort,
+      filters: params.filters,
+      search: params.search,
+      searchableFields: ['title'],
     });
   }
 
@@ -63,6 +70,25 @@ class TypeORMCourseRepository
 
   async delete(params: IDeleteCourse.Params): Promise<IDeleteCourse.Response> {
     await this.repository.delete({ id: params.id });
+  }
+
+  async findByUser(
+    params: IFindCoursesByUser.Params,
+  ): Promise<IFindCoursesByUser.Response> {
+    const query = this.repository.createQueryBuilder();
+
+    query.where(`${query.alias}.userId = :userId`, { userId: params.userId });
+
+    const search = new Search<ICourseEntity>(query);
+
+    return search.execute({
+      page: params.page,
+      limit: params.limit,
+      sort: params.sort,
+      filters: params.filters,
+      search: params.search,
+      searchableFields: ['title'],
+    });
   }
 }
 

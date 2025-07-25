@@ -10,7 +10,7 @@ import {
   HttpCode,
   HttpStatus,
   Param,
-  Patch,
+  Put,
   UseGuards,
 } from '@nestjs/common';
 import {
@@ -59,7 +59,7 @@ class UpdateCourseDTO {
 class UpdateCourseController {
   constructor(private readonly updateCourseService: UpdateCourseService) {}
 
-  @Patch(UPDATE_COURSE_ROUTE)
+  @Put(UPDATE_COURSE_ROUTE)
   @HttpCode(HttpStatus.CREATED)
   @ApiOperation({ summary: 'Update Course' })
   @ApiResponse({ status: 201, description: 'Course successfully deleted.' })

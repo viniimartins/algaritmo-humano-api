@@ -1,20 +1,31 @@
 import {
   COURSE_BASE_ROUTE,
-  SEARCH_COURSE_ROUTE,
+  FIND_COURSES_USER_ROUTE,
 } from '@modules/courses/constants';
-import { SearchCoursesService } from '@modules/courses/services/search-courses.service';
-import { Controller, Get, HttpCode, HttpStatus, Query } from '@nestjs/common';
+import { FindCoursesByUserService } from '@modules/courses/services/find-courses-by-user.service';
 import {
+  Controller,
+  Get,
+  HttpCode,
+  HttpStatus,
+  Query,
+  UseGuards,
+} from '@nestjs/common';
+import {
+  ApiBearerAuth,
   ApiOperation,
   ApiPropertyOptional,
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
+import { User } from '@providers/jwt-provider/decorators/user.decorator';
+import type { UserDTO } from '@providers/jwt-provider/dtos/userDTO';
+import { JwtAuthGuard } from '@providers/jwt-provider/guards/jwt-auth.guard';
 import { instanceToPlain, Transform, Type } from 'class-transformer';
 import { IsArray, IsInt, IsOptional, IsString, Min } from 'class-validator';
 import { toArray } from 'helpers/transformers';
 
-export class SearchCoursesDTO {
+export class FindCoursesByUserDTO {
   @ApiPropertyOptional({ description: 'Page number', default: 1 })
   @Type(() => Number)
   @IsInt()
@@ -43,24 +54,31 @@ export class SearchCoursesDTO {
 
 @ApiTags(COURSE_BASE_ROUTE)
 @Controller(COURSE_BASE_ROUTE)
-class SearchCoursesController {
-  constructor(private readonly searchCoursesService: SearchCoursesService) {}
+@ApiBearerAuth()
+@UseGuards(JwtAuthGuard)
+class FindCoursesByUserController {
+  constructor(
+    private readonly findCoursesByUserService: FindCoursesByUserService,
+  ) {}
 
-  @Get(SEARCH_COURSE_ROUTE)
+  @Get(FIND_COURSES_USER_ROUTE)
   @HttpCode(HttpStatus.OK)
-  @ApiOperation({ summary: 'Search Courses' })
+  @ApiOperation({ summary: 'Search Courses by user' })
   @ApiResponse({ status: 200, description: 'Courses retrieved successfully.' })
-  async handle(@Query() query: SearchCoursesDTO) {
+  async handle(@User() user: UserDTO, @Query() query: FindCoursesByUserDTO) {
+    const { userId } = user;
+
     const { limit, page, filters } = query;
 
-    const courses = await this.searchCoursesService.execute({
+    const courses = await this.findCoursesByUserService.execute({
       limit,
       page,
       filters,
+      userId,
     });
 
     return instanceToPlain(courses);
   }
 }
 
-export { SearchCoursesController };
+export { FindCoursesByUserController };

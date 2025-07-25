@@ -7,7 +7,7 @@ import type {
   IDeleteCourseService,
 } from '@modules/courses/domain/services';
 import type { IFindCourseByIdRepository } from '@modules/courses/repositories';
-import type { IDeleteCourseRepository } from '@modules/courses/repositories/delete-course-repository';
+import type { IDeleteCourseRepository } from '@modules/courses/repositories/delete-course.repository';
 import {
   ForbiddenException,
   Inject,
@@ -23,7 +23,7 @@ class DeleteCourseService implements IDeleteCourseService {
 
     @Inject(FIND_COURSE_BY_ID_REPOSITORY_TOKEN)
     private findCourseByIdRepository: IFindCourseByIdRepository,
-  ) { }
+  ) {}
 
   async execute(
     params: IDeleteCourse.Request,

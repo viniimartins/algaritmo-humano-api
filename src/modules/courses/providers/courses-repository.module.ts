@@ -2,6 +2,7 @@ import {
   CREATE_COURSE_REPOSITORY_TOKEN,
   DELETE_COURSE_REPOSITORY_TOKEN,
   FIND_COURSE_BY_ID_REPOSITORY_TOKEN,
+  FIND_COURSES_BY_USER_REPOSITORY_TOKEN,
   SEARCH_COURSES_REPOSITORY_TOKEN,
   UPDATE_COURSE_REPOSITORY_TOKEN,
 } from '@modules/courses/constants';
@@ -33,6 +34,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       provide: FIND_COURSE_BY_ID_REPOSITORY_TOKEN,
       useClass: TypeORMCourseRepository,
     },
+    {
+      provide: FIND_COURSES_BY_USER_REPOSITORY_TOKEN,
+      useClass: TypeORMCourseRepository,
+    },
   ],
   exports: [
     CREATE_COURSE_REPOSITORY_TOKEN,
@@ -40,6 +45,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     UPDATE_COURSE_REPOSITORY_TOKEN,
     FIND_COURSE_BY_ID_REPOSITORY_TOKEN,
     DELETE_COURSE_REPOSITORY_TOKEN,
+    FIND_COURSES_BY_USER_REPOSITORY_TOKEN,
   ],
 })
 class CoursesRepositoryModule {}
