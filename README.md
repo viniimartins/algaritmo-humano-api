@@ -1,4 +1,4 @@
-# Teste Técnico Front-End
+# Teste Técnico Fullstack
 
 👋 **Introdução**
 
@@ -9,7 +9,6 @@ Bem-vindo(a) ao teste técnico para desenvolvedor Fullstack no Algaritmo Humano!
 - TypeOrm
 - TypeScript
 - ClassValidator
-- Axios
 - Nest.js
 - Docker
 - Postgres
