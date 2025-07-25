@@ -37,7 +37,7 @@ class DeleteCourseService implements IDeleteCourseService {
     }
 
     if (course.userId !== userId) {
-      throw new ForbiddenException('You cannot update this course');
+      throw new ForbiddenException('You cannot delete this course');
     }
 
     return this.deleteCourseRepository.delete(params);
